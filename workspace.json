@@ -1,5 +1,71 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "remix-ide",
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    }
+  },
   "projects": {
     "remix-ide": {
       "root": "apps/remix-ide",
@@ -1102,6 +1168,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "remix-ui-vertical-icons-panel": {
       "root": "libs/remix-ui/vertical-icons-panel",
       "sourceRoot": "libs/remix-ui/vertical-icons-panel/src",
@@ -1113,10 +1180,24 @@
             "linter": "eslint",
             "tsConfig": ["libs/remix-ui/vertical-icons-panel/tsconfig.lib.json"],
             "exclude": ["**/node_modules/**", "!libs/remix-ui/vertical-icons-panel/**/*"]
+=======
+    "remix-ui-solidity-unit-testing": {
+      "root": "libs/remix-ui/solidity-unit-testing",
+      "sourceRoot": "libs/remix-ui/solidity-unit-testing/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/remix-ui/solidity-unit-testing/**/*.{ts,tsx,js,jsx}"
+            ]
+>>>>>>> 6d78ad88e... SUT in React
           }
         }
       }
     }
+<<<<<<< HEAD
   },
   "remix-ui-editor": {
     "root": "libs/remix-ui/editor",
@@ -1200,3 +1281,7 @@
     },
     "defaultProject": "remix-ide"
 }
+=======
+  }
+}
+>>>>>>> 6d78ad88e... SUT in React
