@@ -3,7 +3,7 @@ import { Plugin } from '@remixproject/engine'
 import * as packageJson from '../../../../../package.json'
 
 import { sourceMappingDecoder } from '@remix-project/remix-debug'
-import { Registry } from '../state/registry'
+import Registry from '../state/registry'
 const { AstWalker } = require('@remix-project/remix-astwalker')
 const EventManager = require('../../lib/events')
 
