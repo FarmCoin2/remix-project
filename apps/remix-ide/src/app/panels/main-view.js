@@ -1,7 +1,8 @@
+import { Registry } from '../state/registry'
+
 var yo = require('yo-yo')
 var EventManager = require('../../lib/events')
 
-var globalRegistry = require('../../global/registry')
 var { TabProxy } = require('./tab-proxy.js')
 
 var ContextView = require('../editor/contextView')
@@ -24,11 +25,11 @@ export class MainView {
     self.event = new EventManager()
     self._view = {}
     self._components = {}
-    self._components.registry = globalRegistry
+    self._components.registry = Registry.getInstance()
     self.editor = editor
     self.fileManager = fileManager
     self.mainPanel = mainPanel
-    self.txListener = globalRegistry.get('txlistener').api
+    self.txListener = Registry.getInstance().get('txlistener').api
     self._components.terminal = terminal
     self._components.contextualListener = contextualListener
     this.appManager = appManager

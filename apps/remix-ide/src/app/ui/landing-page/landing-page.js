@@ -2,10 +2,10 @@ import * as packageJson from '../../../../../../package.json'
 import { ViewPlugin } from '@remixproject/engine-web'
 import { migrateToWorkspace } from '../../../migrateFileSystem'
 import JSZip from 'jszip'
+import { Registry } from '../../state/registry'
 
 const yo = require('yo-yo')
 const csjs = require('csjs-inject')
-const globalRegistry = require('../../../global/registry')
 const modalDialogCustom = require('../modal-dialog-custom')
 const modalDialog = require('../modaldialog')
 const tooltip = require('../tooltip')
@@ -127,7 +127,7 @@ export class LandingPage extends ViewPlugin {
     this.appManager = appManager
     this.verticalIcons = verticalIcons
     this.gistHandler = new GistHandler()
-    const themeQuality = globalRegistry.get('themeModule').api.currentTheme().quality
+    const themeQuality = Registry.getInstance().get('themeModule').api.currentTheme().quality
     window.addEventListener('resize', () => this.adjustMediaPanel())
     window.addEventListener('click', (e) => this.hideMediaPanel(e))
     this.twitterFrame = yo`
@@ -176,7 +176,7 @@ export class LandingPage extends ViewPlugin {
       </div>
     `
     this.adjustMediaPanel()
-    globalRegistry.get('themeModule').api.events.on('themeChanged', (theme) => {
+    Registry.getInstance().get('themeModule').api.events.on('themeChanged', (theme) => {
       this.onThemeChanged(theme.quality)
     })
   }
@@ -241,7 +241,7 @@ export class LandingPage extends ViewPlugin {
   render () {
     const load = (service, item, examples, info) => {
       const contentImport = this.contentImport
-      const fileProviders = globalRegistry.get('fileproviders').api
+      const fileProviders = Registry.getInstance().get('fileproviders').api
       const msg = yo`
         <div class="p-2">
           <span>Enter the ${item} you would like to load.</span>
@@ -332,7 +332,7 @@ export class LandingPage extends ViewPlugin {
     const downloadFiles = async () => {
       try {
         tooltip('preparing files for download, please wait..')
-        const fileProviders = globalRegistry.get('fileproviders').api
+        const fileProviders = Registry.getInstance().get('fileproviders').api
         const zip = new JSZip()
         await fileProviders.browser.copyFolderToJson('/', ({ path, content }) => {
           zip.file(`remixbackup${path}`, content)
@@ -355,18 +355,18 @@ export class LandingPage extends ViewPlugin {
       this.appManager.activatePlugin('remixd')
     }
     const importFromGist = () => {
-      this.gistHandler.loadFromGist({ gist: '' }, globalRegistry.get('filemanager').api)
+      this.gistHandler.loadFromGist({ gist: '' }, Registry.getInstance().get('filemanager').api)
       this.verticalIcons.select('filePanel')
     }
 
-    globalRegistry.get('themeModule').api.events.on('themeChanged', (theme) => {
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('remixLogo'))
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('solidityLogo'))
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('debuggerLogo'))
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('learnEthLogo'))
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('workshopLogo'))
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('moreLogo'))
-      globalRegistry.get('themeModule').api.fixInvert(document.getElementById('solhintLogo'))
+    Registry.getInstance().get('themeModule').api.events.on('themeChanged', (theme) => {
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('remixLogo'))
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('solidityLogo'))
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('debuggerLogo'))
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('learnEthLogo'))
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('workshopLogo'))
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('moreLogo'))
+      Registry.getInstance().get('themeModule').api.fixInvert(document.getElementById('solhintLogo'))
     })
 
     const createLargeButton = (imgPath, envID, envText, callback) => {
@@ -392,7 +392,7 @@ export class LandingPage extends ViewPlugin {
     this.moreEnv = createLargeButton('assets/img/moreLogo.webp', 'moreLogo', 'More', startPluginManager)
     this.websiteIcon = yo`<img id='remixHhomeWebsite' class="mr-1 ${css.image}" src="${profile.icon}"></img>`
 
-    const themeQuality = globalRegistry.get('themeModule').api.currentTheme().quality
+    const themeQuality = Registry.getInstance().get('themeModule').api.currentTheme().quality
     const invertNum = (themeQuality === 'dark') ? 1 : 0
     this.solEnv.getElementsByTagName('img')[0].style.filter = `invert(${invertNum})`
     this.optimismEnv.getElementsByTagName('img')[0].style.filter = `invert(${invertNum})`

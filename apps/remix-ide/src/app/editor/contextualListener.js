@@ -3,9 +3,9 @@ import { Plugin } from '@remixproject/engine'
 import * as packageJson from '../../../../../package.json'
 
 import { sourceMappingDecoder } from '@remix-project/remix-debug'
+import { Registry } from '../state/registry'
 const { AstWalker } = require('@remix-project/remix-astwalker')
 const EventManager = require('../../lib/events')
-const globalRegistry = require('../../global/registry')
 
 const profile = {
   name: 'contextualListener',
@@ -22,7 +22,7 @@ class ContextualListener extends Plugin {
     super(profile)
     this.event = new EventManager()
     this._components = {}
-    this._components.registry = globalRegistry
+    this._components.registry = Registry.getInstance()
     this.editor = opts.editor
     this.pluginManager = opts.pluginManager
     this._deps = {
