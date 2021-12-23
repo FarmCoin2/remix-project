@@ -1168,8 +1168,6 @@
         }
       }
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     "remix-ui-vertical-icons-panel": {
       "root": "libs/remix-ui/vertical-icons-panel",
       "sourceRoot": "libs/remix-ui/vertical-icons-panel/src",
@@ -1181,11 +1179,11 @@
             "linter": "eslint",
             "tsConfig": ["libs/remix-ui/vertical-icons-panel/tsconfig.lib.json"],
             "exclude": ["**/node_modules/**", "!libs/remix-ui/vertical-icons-panel/**/*"]
-=======
-    "remix-ui-solidity-unit-testing": {
-=======
+          }
+        }
+      }
+    },
     "solidity-unit-testing": {
->>>>>>> da3539b0b... setup update
       "root": "libs/remix-ui/solidity-unit-testing",
       "sourceRoot": "libs/remix-ui/solidity-unit-testing/src",
       "projectType": "library",
@@ -1199,12 +1197,10 @@
               "**/node_modules/**",
               "!libs/remix-ui/solidity-unit-testing/**/*"
             ]
->>>>>>> 6d78ad88e... SUT in React
           }
         }
       }
     }
-<<<<<<< HEAD
   },
   "remix-ui-editor": {
     "root": "libs/remix-ui/editor",
@@ -1248,47 +1244,5 @@
           "linter": "eslint"
         }
       }
-    },
-    "cli": {
-      "defaultCollection": "@nrwl/react"
-    },
-    "schematics": {
-      "@nrwl/workspace": {
-        "library": {
-          "linter": "eslint"
-        }
-      },
-      "@nrwl/cypress": {
-        "cypress-project": {
-          "linter": "eslint"
-        }
-      },
-      "@nrwl/react": {
-        "application": {
-          "style": "css",
-          "linter": "eslint",
-          "babel": true
-        },
-        "component": {
-          "style": "css"
-        },
-        "library": {
-          "style": "css",
-          "linter": "eslint"
-        }
-      },
-      "library": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/nx-plugin": {
-      "plugin": {
-        "linter": "eslint"
-      }
-    },
-    "defaultProject": "remix-ide"
+    }
 }
-=======
-  }
-}
->>>>>>> 6d78ad88e... SUT in React
