@@ -15,7 +15,7 @@ import { FramingService } from './framingService'
 
 import { WalkthroughService } from './walkthroughService'
 
-import { OffsetToLineColumnConverter, CompilerMetadata, CompilerArtefacts, FetchAndCompile, CompilerImports } from '@remix-project/core-plugin'
+import { OffsetToLineColumnConverter, CompilerMetadata, CompilerArtefacts, FetchAndCompile, CompilerImports, EditorContextListener } from '@remix-project/core-plugin'
 
 import migrateFileSystem from './migrateFileSystem'
 import Registry from './app/state/registry'
@@ -49,7 +49,6 @@ const TestTab = require('./app/tabs/test-tab')
 const FilePanel = require('./app/panels/file-panel')
 const Editor = require('./app/editor/editor')
 const Terminal = require('./app/panels/terminal')
-const ContextualListener = require('./app/editor/contextualListener')
 
 class AppComponent {
   constructor () {
@@ -157,7 +156,7 @@ class AppComponent {
         }
       }
     )
-    const contextualListener = new ContextualListener({ editor })
+    const contextualListener = new EditorContextListener()
 
     const configPlugin = new ConfigPlugin()
 
